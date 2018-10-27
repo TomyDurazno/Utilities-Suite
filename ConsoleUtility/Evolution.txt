@@ -1,0 +1,76 @@
+﻿08/30/2018 - Comandos:
+
+- Hasta ahora, existe la noción de 3 tipos de comandos ejecutables
+
+- Call
+- Pipe
+- Fall
+
+-> Call:
+
+Ejecuta un invocable directamente, puede o no retornar nada (void), o puede retornar Task. Puede recibir un array de strings o un string
+
+-> Pipe :
+
+Ejecuta una serie de comandos separados por un pipe (" > "). Ejecuta uno atrás de otro de manera secuencial.
+
+-> Fall:
+
+Ejecuta una serie de comandos separados por un pipe (" > "), ejecuta uno atrás de otro de manera secuencial, pasándole el return del invocable
+(un string[], si solamente devuelve un string, se lo transforma a un string[] de 1 elemento) como argumentos al próximo invocable de la secuencia.
+
+Debería unificarse criterios y ver de qué manera los diferentes tipos de Invocables (según el tipo que reciben y el que devuelven) pueden coexstir entre ellos.
+Habría que generar un command de help para saber información de la firma del method de un Invocable.
+
+/*********************************************************/
+
+08/30/2018 - InputResult Day 1 Evo
+
+Hoy por hoy funciona bien el input result (mejor de los esperado!) y puede interpretar los pipes, los falls, los argumentos tipo texto y los Invocables reciben los argumentos que esperan
+La problemática es ver si no se está llamando múltiples veces a las mismas manipulaciones sobre el string del 'ReadLine'. Si en la ejecución de un command (que puede incluír uno o muchos invocables)
+se llama múltiples veces a 'Console.ReadLine().Split(" ")' se gasta recursos innecesarios. Habría que ver una forma de que todo ese tipo de string manipulation sea efectuada solamente una vez y que sea cachado/guardado/lazyado/etc
+
+09/01/2018 - Tokenizer Day 3 Evo
+
+Se fue por un aproach de transformar el input string en un stream de Tokens. Habría que hacerle un refactor a la implementación actual para mantener los tokens
+
+/**********************************************************/
+
+09/01/2018 - Dynamic Invocation Day 3 Evo
+
+Hay que generar una forma de ejecutar los métodos de los Invocables obviando los binders
+ y obviando la implementación de la clase 'Invocable', una forma full Dynamic para ejecutar Tasks (await) y Funcs
+
+/************************************************************/
+
+ 09/02/2018 - Invoker as a Service Day 4 Evo
+
+ Generar la implementación dentro de una clase, que pueda instanciarse y que reciba el input y el output de manera funcional 
+
+/****************************************************************/
+
+ 09/02/2018 - Multiple Invoker Caller Day 4 Evo
+
+ Las clases del tipo "Invoker" deben poder soportar múltiples "InvokerCallers"
+
+ EDIT: faltaría definir el comportamiento de los Invocables, ya que actualmente se crea una instancia por Invoker class y se la mantiene durante el ciclo de vida de la app
+
+/*************************************************************************/
+
+ 09/05/2018 - Dynamic Piping Caller Day 7 Evo
+
+ some way of piping of dynamics THATS IT MA MEN
+
+/***********************************************************************/
+
+ 09/05/2018 - Var & Heap Day 7 Evo
+
+ Var definitions, var convention name, thread-safe heap, var assignations - DONE
+
+ TODO: Fix text literal argument input (not correctly tokenized)
+
+ TODO: Fix call Invoker without parameters (ex. Guid)
+
+ TODO: Add support for multiple arguments (var references and/or input values)
+
+

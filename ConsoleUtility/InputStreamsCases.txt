@@ -1,0 +1,53 @@
+call sum 1 2 3
+
+pipe sum 1 2 > concat abc defg
+
+pipe sum 1 2 3 > concat Alpha Cat Zingano > playSound beep
+
+call inside "call sum 1 2 3"
+
+call inside "call inside call sum 1 2"
+
+call inside "call inside pipe sum 1 2 > concat Alpha Cat Zingano > open tigerwoods.mp3"
+
+call inside "call inside pipe sum 1 2 > concat Alpha Cat Zingano > open mero.jpg"
+
+call dynamic inside "call dynamic sum 1 2 3"
+
+dynamic dynamic inside "call sum 1 2 3"
+
+dynamic dynamic dynamic sum 1 2 3 4 5
+
+var nums = json [1, 2, 3]
+
+pipe date 2000 4 > dump
+
+pipe date 2000 4 > upper > dump
+
+pipe date 2000 4 > hour > dump 
+
+pipe date 2000 4 > hour > dump > hour > log
+
+pipe date 2000 4 > dump > hour > dump > hour > log
+
+pipe date 2000 4 > hour > tostring > todate > log
+
+var *sum = ranger 0 10 > sumer > dump
+
+/*
+
+var *d = date 1 1
+
+*d
+
+pipe hour *d > dump
+
+*/
+
+seq sum 1 2 3 | sum 21 > sumf > dump | range 0 10
+
+seq date 0 1 > hour > dump | range 0 10 > sumf > dump
+
+var *num = range 0 10 > sum > dump
+
+call inside "seq date 0 1 > hour > dump | range 0 10 > sumf > dump"
