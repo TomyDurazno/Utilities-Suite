@@ -79,10 +79,16 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 
  To do:
 	
-	- var values assignation
-	- Assign function invocations (call and pipe) to var declarations
-	- func declarations (same as var)
-	- closures (oooh!)
+	Functionalities:
+
+		- var values assignation
+		- Assign function invocations (call and pipe) to var declarations
+		- func declarations (same as var)
+		- closures (oooh!)
+
+	Configuration:
+
+		- read 'TokenConfigs' from a xml file
 
 
 

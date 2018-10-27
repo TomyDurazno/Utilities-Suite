@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D72E912C-0144-4465-BC9B-A36D1B9286C0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleUtility</RootNamespace>
-    <AssemblyName>ConsoleUtility</AssemblyName>
+    <RootNamespace>Dynamic_Invoker</RootNamespace>
+    <AssemblyName>Dynamic_Invoker</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <LangVersion>7.1</LangVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,6 +63,11 @@
     <Compile Include="Core\Expressions\Tokens\TokenConfigs.cs" />
     <Compile Include="Core\Invoker\InvokerAttributes.cs" />
     <Compile Include="Core\Runners\PipeRunner.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Reflector.cs" />
     <Compile Include="Core\Invoker\InvokerService.cs" />
     <Compile Include="Core\Streams\StreamProvider.cs" />
@@ -84,8 +89,14 @@
   <ItemGroup>
     <Content Include="Evolution.txt" />
     <Content Include="InputStreamsCases.txt" />
+    <Content Include="TokenConfigs.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

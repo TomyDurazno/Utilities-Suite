@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <Separator>" "</Separator>
+  <Joiner>" "</Joiner>
+  <Pipe>" > "</Pipe>
+  <Seq>" | "</Seq>
+  <TextStart>"""</TextStart>
+  <TextEnd>"""</TextEnd>
+  <VarNameStart>"*"</VarNameStart>
+</configuration>

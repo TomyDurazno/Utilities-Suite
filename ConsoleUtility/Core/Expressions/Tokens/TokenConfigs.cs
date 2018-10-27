@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Utility.Core.Tokens
 {
@@ -10,18 +12,31 @@ namespace Utility.Core.Tokens
     //Potentially can be read from a config file
     public static class TokenConfigs
     {
-        public static char Separator { get { return Joiner.ToCharArray().First(); }}
+        private static XElement Configurations
+        {
+            get
+            {
+                return XDocument.Parse(Dynamic_Invoker.Properties.Resources.TokenConfigs).Element("configuration");
+            }
+        }
 
-        public static string Joiner { get { return " "; }}
+        private static string GetElement(string elementName)
+        {
+            return Regex.Replace(Configurations.Element(elementName).Value.ToString().Trim(), "^\"|\"$", "");
+        }
 
-        public static string Pipe { get { return " > "; }}
+        public static char Separator { get { return Convert.ToChar(GetElement("Separator")); } }
 
-        public static string Seq { get { return " | "; }}
+        public static string Joiner { get { return GetElement("Joiner"); } }
 
-        public static string TextStart { get { return "\""; }}
+        public static string Pipe { get { return GetElement("Pipe"); ; } }
 
-        public static string TextEnd { get { return "\""; }}
+        public static string Seq { get { return GetElement("Seq"); } }
 
-        public static string VarNameStart { get { return "*"; } }
+        public static string TextStart { get { return GetElement("TextStart"); } }
+
+        public static string TextEnd { get { return GetElement("TextEnd"); } }
+
+        public static string VarNameStart { get { return GetElement("VarNameStart"); } }
     }
 }
