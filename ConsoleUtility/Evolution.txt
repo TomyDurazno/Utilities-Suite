@@ -77,6 +77,13 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 
  10/27/2018 - Added to GitHub Repo
 
+ To do:
+	
+	- var values assignation
+	- Assign function invocations (call and pipe) to var declarations
+	- func declarations (same as var)
+	- closures (oooh!)
+
 
 
 
