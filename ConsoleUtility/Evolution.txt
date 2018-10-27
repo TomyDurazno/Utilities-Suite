@@ -82,13 +82,18 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 	Functionalities:
 
 		- var values assignation
+			
+			-> Support for primitive initializers literals (strings, nums, datetimes, etcs)
+
 		- Assign function invocations (call and pipe) to var declarations
 		- func declarations (same as var)
 		- closures (oooh!)
 
+		 - TODO: Fix text literal argument input (not correctly tokenized)
+
 	Configuration:
 
-		- read 'TokenConfigs' from a xml file
+		- read 'TokenConfigs' from a xml file -> DONE
 
 
 
