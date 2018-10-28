@@ -15,6 +15,10 @@ using System.Xml.Serialization;
 
 namespace Utility.Tools
 {
+    /*
+        Bunch of tools. Most of them are not even used in this project, they were copy-pasted from another 
+    */
+
     public static class MyExtensions
     {
         #region Powerful one-liners

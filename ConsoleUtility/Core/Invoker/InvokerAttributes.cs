@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Utility.Core.Attributes
 {
+    /*
+        This attributes are the ones used to recognize Invocables to be run
+    */
+
     public class InvokerAttributes
     {
         public class Invoker : Attribute

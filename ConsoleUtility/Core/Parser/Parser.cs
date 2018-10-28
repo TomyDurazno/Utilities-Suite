@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Utility
 {
+    /*
+
+        Parser is used to transform a string input into chuncks of strings (as an array)
+        to later be converted in a token stream by the ExpressionTokenizer
+
+    */
+
     public static class Parser
     {
         public static string[] ByDelimiters(string[] args, string startsWith, string endsWith, string joinsWith)

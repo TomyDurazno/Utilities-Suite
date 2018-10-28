@@ -10,14 +10,12 @@ namespace Utility
     {
         public static async Task Main(string[] args)
         {
-            var stream = new StreamProvider(Console.ReadLine, input =>
+            var invoker = new InvokerService("Main", new StreamProvider(Console.ReadLine, input =>
             {
                 Console.WriteLine();
                 Console.WriteLine(input);
                 return string.Empty;
-            });
-
-            var invoker = new InvokerService("Main", stream);
+            }));
 
             invoker.PostRun = Console.WriteLine;
 

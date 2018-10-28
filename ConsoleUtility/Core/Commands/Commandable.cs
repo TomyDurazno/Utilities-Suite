@@ -4,11 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Utility.Tools;
 
 namespace Utility.Core.Commandables
 {
+    /*
+        Commandable classes transforms a tokenized expression into a 
+        more manageable set of instructions to be run
+    */
+
     public class Commandable
     {
 
@@ -21,11 +25,6 @@ namespace Utility.Core.Commandables
         public string[] Arguments { get; set; }
 
         public IEnumerable<Token> ArgsTokens { get; set; }
-
-        public bool IsComodin()
-        {
-            return Arguments.FirstOrDefault()?.Project(a => a == "*") ?? false;
-        }
 
         public bool StartsWithVarName
         {
@@ -132,8 +131,6 @@ namespace Utility.Core.Commandables
     {
         public List<CallCommandable> Commandables { get; set; }
 
-        public bool IsDumper { get; set; }
-
         public PipeCommandable(TokenPlainStream stream)
         {
             Commandables = new List<CallCommandable>();
@@ -150,7 +147,7 @@ namespace Utility.Core.Commandables
         {
             Commandables = new List<CallCommandable>();
 
-            var excs = PlainTokens;//.Skip(1);
+            var excs = PlainTokens; //.Skip(1);
 
             foreach (var items in excs.Chunk(t => t.IsPipeSymbol))
             {

@@ -13,6 +13,11 @@ using Utility.Tools;
 
 namespace Utility.Core
 {
+    /*
+        This is the class to consume to use the functionalities of 'Dynamic Invoker' solution
+
+    */
+
     public class InvokerService
     {
         #region Properties
@@ -60,11 +65,14 @@ namespace Utility.Core
 
         #region Methods
 
+        #region Private
+
         private async Task InsideRun()
         {            
             bool NotExit = true;
 
             //Thread safe Heap ??
+            // Maybe: is this an 'Object pool"?
             var Heap = new Lazy<ConcurrentDictionary<string, dynamic>>(() => new ConcurrentDictionary<string, dynamic>(), true);
 
             var binderService = new BinderService();
@@ -306,6 +314,10 @@ namespace Utility.Core
             #endregion
         }
 
+        #endregion
+
+        #region Public
+
         public async Task Run()
         {
             var watch = new Stopwatch();
@@ -321,6 +333,8 @@ namespace Utility.Core
                     PostRun(Status);
             });
         }
+       
+        #endregion
 
         #endregion
     }

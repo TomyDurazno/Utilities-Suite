@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Utility.Core
 {
+    /*
+        Commands that Dynamic Invoker recognizes
+    */
+
     public enum Command
     {
         NotDefined = 0,

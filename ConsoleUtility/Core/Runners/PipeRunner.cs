@@ -8,6 +8,13 @@ using Utility.Tools;
 
 namespace Utility.Core.Runners
 {
+    /*
+        This class was first used to run pipe expressions, now it is used to run most of the functionalities.
+        Maybe: It can be renamed to 'Runner'?
+
+
+    */
+
     public class PipeRunner
     {
         #region Properties

@@ -8,6 +8,18 @@ using Utility.Tools;
 
 namespace Utility.Core.Expressions
 {
+    /*
+        ExpressionTokenizer's classes are used to transform an input string into 
+        a token representation. 
+        
+        Internally uses the 'Parser' class to parse the string input into strings chuncks.
+        
+        Enhancing the behaviour of both this and Parser would give a richer
+        way of handling Input (less error prone, easier to debug, test and write functionallity over it)
+
+
+    */
+
     public class TokenInputStream
     {
         public List<Token> HighLevelTokens { get; set; }
@@ -59,15 +71,15 @@ namespace Utility.Core.Expressions
         }
     }
 
-    public static class TokenInputStreamExtensions
-    {
-        public static string GetStringsRepresentation(this TokenPlainStream stream)
-        {
-            var values = stream.PlainTokens.Select(t => t.StringRepresentation);
+    //public static class TokenInputStreamExtensions
+    //{
+    //    public static string GetStringsRepresentation(this TokenPlainStream stream)
+    //    {
+    //        var values = stream.PlainTokens.Select(t => t.StringRepresentation);
             
-            return values.Project(s => string.Join(TokenConfigs.Joiner, s));
-        }            
-    }
+    //        return values.Project(s => string.Join(TokenConfigs.Joiner, s));
+    //    }            
+    //}
 
     public class TokenStreamer
     {

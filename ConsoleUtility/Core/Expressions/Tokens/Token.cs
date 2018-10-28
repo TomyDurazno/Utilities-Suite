@@ -1,14 +1,21 @@
-﻿using Utility.Core;
-using Utility.Core.Expressions;
-using System;
+﻿using Utility.Core.Expressions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utility.Tools;
 
 namespace Utility.Core.Tokens
 {
+    /*
+        Token represents the way of distinguish the atoms of an input expression
+
+        A plain token is the minimal way of representing an input atom,
+        A high level token is a way to represent
+
+            -> A collection of another, high level tokens (to generalize/abstract a concept)
+            -> A collection of plain tokens
+            -> A collection of both high level and plain tokens
+    */
+
     public enum TokenType
     {
         Init_Line,
@@ -38,6 +45,7 @@ namespace Utility.Core.Tokens
 
         public string Value { get; set; }
 
+        //This distinguish plain tokens from high level tokens
         public virtual bool IsParent => false;
 
         public virtual string StringRepresentation => Value.Trim();

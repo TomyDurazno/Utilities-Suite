@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Utility.Core.Tokens
 {
-    //Dynamic Token Configuration
-    //Potentially can be read from a config file
+    /*
+        Token configs reads the string representation of particular tokens/reserved words
+        from 'TokenConfigs.xml'
+        
+        Its implemented this way so anyone using this program can change or redefine their own reserved words
+
+    */
+
     public static class TokenConfigs
     {
+        #region Private Properties
+
         private static XElement Configurations
         {
             get
@@ -24,6 +28,10 @@ namespace Utility.Core.Tokens
         {
             return Regex.Replace(Configurations.Element(elementName).Value.ToString().Trim(), "^\"|\"$", "");
         }
+
+        #endregion
+
+        #region Public Properties
 
         public static char Separator { get { return Convert.ToChar(GetElement("Separator")); } }
 
@@ -38,5 +46,7 @@ namespace Utility.Core.Tokens
         public static string TextEnd { get { return GetElement("TextEnd"); } }
 
         public static string VarNameStart { get { return GetElement("VarNameStart"); } }
+
+        #endregion
     }
 }

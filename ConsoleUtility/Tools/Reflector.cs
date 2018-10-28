@@ -7,6 +7,10 @@ namespace Utility.Tools
 {
     public static class Reflector
     {
+        /*
+            Class used to perform reflection calls
+        */
+
         public static IEnumerable<Type> GetTypesWithAttribute<TAttribute>(Assembly assembly)
         {
             foreach (Type type in assembly.GetTypes())
