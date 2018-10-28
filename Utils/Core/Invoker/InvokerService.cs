@@ -48,7 +48,7 @@ namespace Utility.Core
 
         Func<string,string> writer { get { return StreamProvider.Writer; }}
 
-        public Action<string> PostRun { get; set; }
+        public Action<string> PostRun { get; }
 
         #endregion
 
@@ -61,6 +61,13 @@ namespace Utility.Core
             _force = forceExit;
         }
 
+        public InvokerService(string serviceName, StreamProvider provider, bool forceExit = false, Action<string> postRun = null) : this (serviceName, provider, forceExit = false)
+        {
+            ServiceName = serviceName;
+            StreamProvider = provider;
+            _force = forceExit;
+            PostRun = postRun;
+        }
         #endregion
 
         #region Methods

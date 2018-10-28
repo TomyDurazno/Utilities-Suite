@@ -9,16 +9,24 @@ namespace ConsoleTest
     {
         public static async Task Main(string[] args)
         {
-            var invoker = new InvokerService("Main", new StreamProvider(Console.ReadLine, input =>
-            {
-                Console.WriteLine();
-                Console.WriteLine(input);
-                return string.Empty;
-            }));
+            await new InvokerService("Main", new StreamProvider(Reader, Writer), false, PostRun).Run();
+        }
 
-            invoker.PostRun = Console.WriteLine;
+        public static string Reader()
+        {
+            return Console.ReadLine();
+        }
 
-            await invoker.Run();
+        static string Writer(string input)
+        {
+            Console.WriteLine();
+            Console.WriteLine(input);
+            return string.Empty;
+        }
+
+        static void PostRun(string s)
+        {
+            Console.WriteLine(s);
         }
     }
 }

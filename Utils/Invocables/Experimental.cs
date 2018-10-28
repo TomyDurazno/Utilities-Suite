@@ -21,9 +21,7 @@ namespace Utility.Invokers
         {
             var stream = new StreamProvider(() => string.Join(TokenConfigs.Joiner, args).CleanString(TokenConfigs.TextStart, TokenConfigs.TextEnd), input => { Console.WriteLine(input); return string.Empty; });
 
-            var invoker = new InvokerService("Inside", stream, true);
-
-            invoker.PostRun = Console.WriteLine;
+            var invoker = new InvokerService("Inside", stream, true, Console.WriteLine);
 
             await invoker.Run();
 
