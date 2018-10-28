@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamic Invoker", "ConsoleUtility\Dynamic Invoker.csproj", "{D72E912C-0144-4465-BC9B-A36D1B9286C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamic Invoker", "Utils\Dynamic Invoker.csproj", "{D72E912C-0144-4465-BC9B-A36D1B9286C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://duraznolabs.visualstudio.com/
-		SccProjectUniqueName0 = ConsoleUtility\\Dynamic\u0020Invoker.csproj
-		SccProjectName0 = ConsoleUtility
-		SccLocalPath0 = ConsoleUtility
+		SccProjectUniqueName0 = Utils\\Dynamic\u0020Invoker.csproj
+		SccProjectName0 = Utils
+		SccLocalPath0 = Utils
 		SccLocalPath1 = .
 	EndGlobalSection
 EndGlobal

@@ -8,7 +8,7 @@ using static Utility.Core.Attributes.InvokerAttributes;
 namespace Utility.Core
 {
     /*
-        BinderService is the one that allows to load a invoke Invocables.
+        BinderService is the one that allows to load and invoke Invocables.
     */
 
     public class BinderService
