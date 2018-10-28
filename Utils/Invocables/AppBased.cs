@@ -10,7 +10,7 @@ using static Utility.Core.Attributes.InvokerAttributes;
 
 namespace Utility.Invocables
 {
-    [Invoker("ThrowEx")]
+    [Invoker("ThrowEx", "Throws and exception when called")]
     public class ThrowEx
     {
         [InvokerCaller]
@@ -20,7 +20,7 @@ namespace Utility.Invocables
         }
     }
 
-    [Invoker("Closer")]
+    [Invoker("Closer", "Close the application after an interval (in seconds)")]
     public class Closer
     {
         //Must implement method that returns void and recive string[]

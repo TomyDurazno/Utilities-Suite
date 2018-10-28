@@ -54,10 +54,10 @@ namespace Utility.Invocables
         }
     }
 
-    [Invoker("Guid")]
+    [Invoker("Guid", "returns an instance of System.Guid")]
     public class Guider
     {
-        [InvokerCaller("returns an instance of System.Guid")]
+        [InvokerCaller()]
         public string GiveGuid()
         {
             return Guid.NewGuid().ToString();

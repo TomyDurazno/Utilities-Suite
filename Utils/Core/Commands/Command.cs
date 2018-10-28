@@ -21,6 +21,7 @@ namespace Utility.Core
         Heap,
         Clear,
         Exit,
-        Commands
+        Commands,
+        Invocables
     }
 }

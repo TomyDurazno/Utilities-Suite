@@ -28,6 +28,14 @@ namespace Utility.Tools
                                           .Select(t => Activator.CreateInstance(t));
         }
 
+        public static IEnumerable<TAttribute> GetAttributesInAssembly<TAttribute>()
+        {
+            return AppDomain.CurrentDomain
+                            .GetAssemblies()
+                            .SelectMany(a => a.GetTypes())
+                            .SelectMany(t => t.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>());                            
+        }
+
         public static IEnumerable<K> MakeInstancesByAttribute<T, K>()
         {
             return AppDomain.CurrentDomain.GetAssemblies()

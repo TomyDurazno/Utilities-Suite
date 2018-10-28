@@ -16,24 +16,24 @@ namespace Utility.Core.Attributes
         {
             public string Name { get; set; }
 
+            public string Description { get; set; }
+
             public Invoker(string name)
             {
                 Name = name;
+            }
+
+            public Invoker(string name, string description) : this (name)
+            {
+                Description = description;
             }
         }
 
         public class InvokerCaller : Attribute
         {
-            public string Description { get; set; }
-
             public InvokerCaller()
             {
 
-            }
-            
-            public InvokerCaller(string description)
-            {
-                Description = description;
             }
         }
     }

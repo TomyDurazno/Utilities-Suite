@@ -51,3 +51,7 @@ seq date 0 1 > hour > dump | range 0 10 > sumf > dump
 var *num = range 0 10 > sum > dump
 
 call inside "seq date 0 1 > hour > dump | range 0 10 > sumf > dump"
+
+EXPLODE ONES:
+
+- pipe guid > dump

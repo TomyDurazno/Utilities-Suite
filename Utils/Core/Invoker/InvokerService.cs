@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Utility.Core.Tokens;
 using Utility.Tools;
+using Utility.Core.Attributes;
+using System.Text;
 
 namespace Utility.Core
 {
@@ -107,17 +109,26 @@ namespace Utility.Core
                     {
                         switch (input.Command)
                         {
+                            //Review this functionality, cause without calling 'dump' it doesn't produce anything !
                             case Command.Call:
 
                                 #region Call Implementation
 
                                 var com2 = new CallCommandable(stream, 1);
 
-                                await binderService.DynamicGenInvoke(com2.LookUpName, com2.Arguments);
+                                try
+                                {
+                                    await binderService.DynamicGenInvoke(com2.LookUpName, com2.Arguments);
+                                }
+                                catch (Exception ex)
+                                {
+                                    writer(string.Format("Exception when called: ", com2.LookUpName));
+                                    writer(ex.ToString());
+                                }
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Seq:
 
@@ -133,7 +144,7 @@ namespace Utility.Core
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Pipe:
 
@@ -152,7 +163,7 @@ namespace Utility.Core
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Types:
 
@@ -181,7 +192,7 @@ namespace Utility.Core
 
                                 var name = varCom.Name;
 
-                                if(!varCom.IsVarNameConvention)
+                                if (!varCom.IsVarNameConvention)
                                 {
                                     writer(string.Format("var name should start with: {0}", TokenConfigs.VarNameStart));
                                     break;
@@ -207,7 +218,7 @@ namespace Utility.Core
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Heap:
 
@@ -253,17 +264,17 @@ namespace Utility.Core
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Commands:
 
                                 #region Commands Implementation
 
-                                MyUtils.GetEnums<Command>().Select(e => e.ToString()).Enumerates(writer);                                
+                                MyUtils.GetEnums<Command>().Select(e => e.ToString()).Enumerates(writer);
 
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case Command.Clear:
 
@@ -284,7 +295,21 @@ namespace Utility.Core
 
                                 break;
 
+                            #endregion
+
+                            case Command.Invocables:
+
+                                #region Implementation
+
+                                Reflector.GetAttributesInAssembly<InvokerAttributes.Invoker>()
+                                         .OrderBy(a => a.Name)
+                                         .Aggregate(new StringBuilder(), (builder, a) => builder.AppendLine(string.Format(a.Description != null ? "{0}: {1}" : "{0}", a.Name, a.Description)))
+                                         .ToString()
+                                         .Project(writer);
+
                                 #endregion
+
+                                break;    
 
                             default:
 

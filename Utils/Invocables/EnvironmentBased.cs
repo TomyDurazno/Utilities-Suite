@@ -10,7 +10,7 @@ using Utility.Tools;
 
 namespace Utility.Invocables
 {
-    [Invoker("readtext")]
+    [Invoker("readtext", "Read a text file from desktop")]
     public class ReadTxt
     {
         private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -18,7 +18,7 @@ namespace Utility.Invocables
         //Must implement method that returns void and recive string[]
         //or implement method that returns Task and receive string[]
         //with dedicated attributes so it can be called in runtime 
-        [InvokerCaller("Read a text file from desktop")]
+        [InvokerCaller()]
         public void Read(string[] arguments)
         {
             var filename = string.Join(" ", arguments);
@@ -45,12 +45,12 @@ namespace Utility.Invocables
         }
     }
 
-    [Invoker("open")]
+    [Invoker("open", "Opens a file from desktop")]
     public class Opener
     {
         private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-        [InvokerCaller("Opens a file from desktop")]
+        [InvokerCaller()]
         public void Open(string[] arguments)
         {
             var fileName = arguments.FirstOrDefault();
