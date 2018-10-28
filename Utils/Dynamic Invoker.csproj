@@ -65,6 +65,7 @@
     <Compile Include="Core\Expressions\ExpressionTokenizer.cs" />
     <Compile Include="Core\Expressions\Tokens\TokenConfigs.cs" />
     <Compile Include="Core\Invoker\InvokerAttributes.cs" />
+    <Compile Include="Core\Pool\ObjectPool.cs" />
     <Compile Include="Core\Runners\PipeRunner.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

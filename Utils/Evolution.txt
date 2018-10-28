@@ -103,6 +103,10 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 
 		- read 'TokenConfigs' from a xml file -> DONE
 
+	Organization:
+
+		- review namespaces names and hierarchies
+
 10/28/2018 - Added documentation for most of the classes
 
 

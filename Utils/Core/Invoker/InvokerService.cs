@@ -12,6 +12,7 @@ using Utility.Core.Tokens;
 using Utility.Tools;
 using Utility.Core.Attributes;
 using System.Text;
+using Dynamic_Invoker.Core.Pool;
 
 namespace Utility.Core
 {
@@ -81,8 +82,9 @@ namespace Utility.Core
             bool NotExit = true;
 
             //Thread safe Heap ??
-            // Maybe: is this an 'Object pool"?
-            var Heap = new Lazy<ConcurrentDictionary<string, dynamic>>(() => new ConcurrentDictionary<string, dynamic>(), true);
+            //EDIT: Maybe it is an 'Object pool"!           
+
+            var Pool = new ObjectPool();
 
             var binderService = new BinderService();
 
@@ -139,7 +141,7 @@ namespace Utility.Core
 
                                 var runners = seqCom.PipeCommandables.Select(pc => new PipeRunner() { Pipe = pc, Binder = new BinderService() });
 
-                                var tasks = runners.Select(r => r.Run(lookup => Heap.Value.Where(o => o.Key == lookup.ToLower()).FirstOrDefault().Value));
+                                var tasks = runners.Select(r => r.Run(Pool.GetAllocated));
 
                                 await Task.WhenAll(tasks);
 
@@ -160,7 +162,7 @@ namespace Utility.Core
                                     OnException = (ex, lookup) => writer(string.Format("Action {0} failed with {1}", lookup, ex.ToString()))
                                 };
 
-                                await runner.Run(lookup => Heap.Value.Where(o => o.Key == lookup.ToLower()).FirstOrDefault().Value);
+                                await runner.Run(Pool.GetAllocated); 
 
                                 break;
 
@@ -199,7 +201,7 @@ namespace Utility.Core
                                     break;
                                 }
 
-                                if (Heap.Value.Any(o => o.Key == name))
+                                if (Pool.IsAny(name))
                                 {
                                     writer(string.Format("'{0}' already defined", name));
                                     break;
@@ -212,10 +214,10 @@ namespace Utility.Core
                                     Pipe = pipesAssign,
                                     Binder = binderService,
                                     OnException = (lookup, ex) => writer(string.Format("Action {0} failed with {1}", lookup, ex.ToString())),
-                                    OnValue = val => Heap.Value.TryAdd(name, val)
+                                    OnValue = val => Pool.TryAdd(name, val)
                                 };
 
-                                await runnerVar.Run(lookup => Heap.Value.Where(o => o.Key == lookup.ToLower()).FirstOrDefault().Value);
+                                await runnerVar.Run(Pool.GetAllocated);
 
                                 break;
 
@@ -231,7 +233,7 @@ namespace Utility.Core
                                 {
                                     case "clear":
 
-                                        Heap.Value.Clear();
+                                        Pool.Clear();
                                         writer("Heap cleared");
 
                                         break;
@@ -243,8 +245,8 @@ namespace Utility.Core
 
                                         heapCom.Arguments.Enumerates(obj => {
 
-                                            if (Heap.Value.Any(o => o.Key == obj))
-                                                dic.Add(obj, Heap.Value.TryRemove(obj, out outVar));
+                                            if (Pool.IsAny(obj))
+                                                dic.Add(obj, Pool.TryRemove(obj, out outVar));
                                             else
                                                 writer(string.Format("'{0}' not defined", obj));
                                         });
@@ -255,8 +257,8 @@ namespace Utility.Core
 
                                     default:
 
-                                        if (Heap.Value.Any())
-                                            Heap.Value.Enumerates(o => writer(o.ToString()));
+                                        if (Pool.IsAny())
+                                            Pool.GetVars().Enumerates(k => writer(k.ToString()));
                                         else
                                             writer("Heap is empty");
 
@@ -331,11 +333,11 @@ namespace Utility.Core
                                 
                                 //IsReserved word ?
                                 //Is Var instance
-                                if (Heap.IsValueCreated)
+                                if (Pool.IsCreated)
                                 {
-                                    var reference = Heap.Value.Where(o => o.Key == first.Value).FirstOrDefault();
+                                    var reference = Pool.GetAllocated(first.Value);
 
-                                    if (Heap.Value.Any(o => o.Key == first.Value.ToLower()))
+                                    if (Pool.IsAny(first.Value.ToLower()))
                                     {
                                         writer(MyExtensions.ToNullString(reference)); //val.Value
                                     }
