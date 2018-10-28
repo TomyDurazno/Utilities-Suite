@@ -32,7 +32,7 @@ pipe date 2000 4 > dump > hour > dump > hour > log
 
 pipe date 2000 4 > hour > tostring > todate > log
 
-var *sum = ranger 0 10 > sumer > dump
+var *d = range 0 10 > sum > dump
 
 /*
 

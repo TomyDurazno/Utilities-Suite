@@ -83,13 +83,21 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 
 		- var values assignation
 			
-			-> Support for primitive initializers literals (strings, numerics, datetimes, etcs)
+			-> Support for primitive initializers literals (strings, numerics, arrays, tuples, datetimes, etcs)
 
 		- Assign function invocations (call and pipe) to var declarations
+			
+			-> now it works but not for all the cases
+
 		- func declarations (same as var)
 		- closures (oooh!)
+			
+			-> They are both related
 
-		 - TODO: Fix text literal argument input (not correctly tokenized)
+		- Tokenization:
+
+			-> TODO: Fix text literal argument input (not correctly tokenized)
+			Research advanced ways of tokenize inputs
 
 	Configuration:
 

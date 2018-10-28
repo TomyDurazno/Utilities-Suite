@@ -109,7 +109,7 @@ namespace Utility.Core
                     {
                         switch (input.Command)
                         {
-                            //Review this functionality, cause without calling 'dump' it doesn't produce anything !
+                            //Review this functionality, now it writes the result but doesnt handle very good the arguments !
                             case Command.Call:
 
                                 #region Call Implementation
@@ -118,7 +118,8 @@ namespace Utility.Core
 
                                 try
                                 {
-                                    await binderService.DynamicGenInvoke(com2.LookUpName, com2.Arguments);
+                                    var result = await binderService.DynamicGenInvokeFunc(com2.LookUpName, com2.Arguments);
+                                    writer(result);
                                 }
                                 catch (Exception ex)
                                 {
@@ -301,8 +302,19 @@ namespace Utility.Core
 
                                 #region Implementation
 
+                                var arg = stream.PlainTokens
+                                                .Skip(1)
+                                                .Where(t => !t.IsEmpty)
+                                                .FirstOrDefault();
+
+                                var filter = MyUtils.MakeFunc((string s) => true);
+
+                                if (arg != null)
+                                    filter = s => s.IndexOf(arg.Value, StringComparison.InvariantCultureIgnoreCase) >= 0;
+
                                 Reflector.GetAttributesInAssembly<InvokerAttributes.Invoker>()
                                          .OrderBy(a => a.Name)
+                                         .Where(a => filter(a.Name))
                                          .Aggregate(new StringBuilder(), (builder, a) => builder.AppendLine(string.Format(a.Description != null ? "{0}: {1}" : "{0}", a.Name, a.Description)))
                                          .ToString()
                                          .Project(writer);

@@ -55,6 +55,8 @@ namespace Utility.Core.Tokens
         public virtual bool IsVarNameDefinition => false;
 
         public virtual bool IsSeqSymbol => false;
+
+        public virtual bool IsEmpty => string.IsNullOrEmpty(Value);
     }
 
     public class FirstToken : Token
