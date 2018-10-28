@@ -1,6 +1,6 @@
 # Utilities-Suite
 
-Suite of tools made using C#
+Suite of tools that runs on .NET 
 
 Contains:
 
