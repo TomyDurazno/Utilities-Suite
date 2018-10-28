@@ -1,10 +1,9 @@
-﻿using Utility.Core.Streams;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Utility.Core;
-using System.Linq;
+using Utility.Core.Streams;
 
-namespace Utility
+namespace ConsoleTest
 {
     class Program
     {
