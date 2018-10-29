@@ -87,13 +87,13 @@ namespace Utility.Core.Expressions
         {
             var stream = new TokenInputStream();
 
-            var splited = sInput.Split(TokenConfigs.Separator);
+            var splited = sInput.Split(TokenConfigs.SeparatorChar);
 
             var first = new FirstToken() { Value = splited.FirstOrDefault(), TokenType = TokenType.Init_Line };
 
             stream.AddToken(first);
 
-            var execPlan = splited.Skip(1).Project(ss => string.Join(TokenConfigs.Joiner, ss));
+            var execPlan = splited.Skip(1).Project(ss => string.Join(TokenConfigs.SeparatorString, ss));
 
             var sSeqs = execPlan.Split(new string[] { TokenConfigs.Seq }, StringSplitOptions.None);
 
@@ -147,10 +147,10 @@ namespace Utility.Core.Expressions
 
         public static List<ArgToken> ParseByDelimiters(string[] sArgs)
         {
-            var parsed = Parser.ByDelimiters(sArgs, TokenConfigs.TextStart, TokenConfigs.TextEnd, TokenConfigs.Joiner)
+            var parsed = Parser.ByDelimiters(sArgs, TokenConfigs.TextStart, TokenConfigs.TextEnd, TokenConfigs.SeparatorString)
                                .Where(v => !string.IsNullOrEmpty(v));
 
-            return parsed.Select(p => p.Contains(TokenConfigs.Separator) ? new TextArgToken(p, TokenType.Arg) : new ArgToken(p, TokenType.Arg))                        
+            return parsed.Select(p => p.Contains(TokenConfigs.SeparatorChar) ? new TextArgToken(p, TokenType.Arg) : new ArgToken(p, TokenType.Arg))                        
                          .ToList();
         }
     }

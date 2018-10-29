@@ -19,7 +19,7 @@ namespace Utility.Invokers
         [InvokerCaller]
         public async Task Inside(string[] args)
         {
-            var stream = new StreamProvider(() => string.Join(TokenConfigs.Joiner, args).CleanString(TokenConfigs.TextStart, TokenConfigs.TextEnd), input => { Console.WriteLine(input); return string.Empty; });
+            var stream = new StreamProvider(() => string.Join(TokenConfigs.SeparatorString, args).CleanString(TokenConfigs.TextStart, TokenConfigs.TextEnd), input => { Console.WriteLine(input); return string.Empty; });
 
             var invoker = new InvokerService("Inside", stream, true, Console.WriteLine);
 

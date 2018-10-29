@@ -119,7 +119,7 @@ namespace Utility.Core.Tokens
         {
             get
             {
-                var splited = Value.Split(TokenConfigs.Separator);
+                var splited = Value.Split(TokenConfigs.SeparatorChar);
 
                 var scommand = splited.FirstOrDefault();
 

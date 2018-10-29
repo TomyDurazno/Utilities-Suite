@@ -33,9 +33,9 @@ namespace Utility.Core.Tokens
 
         #region Public Properties
 
-        public static char Separator { get { return Convert.ToChar(GetElement("Separator")); } }
+        public static char SeparatorChar { get { return Convert.ToChar(GetElement("Separator")); } }
 
-        public static string Joiner { get { return GetElement("Joiner"); } }
+        public static string SeparatorString { get { return GetElement("Separator"); } }
 
         public static string Pipe { get { return GetElement("Pipe"); ; } }
 
