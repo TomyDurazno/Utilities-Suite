@@ -25,7 +25,24 @@ namespace Utility.Core
     {
         #region Properties
 
-        bool ForceGlobalExit { get; set; }
+        int cont = 0;
+        bool ForceGlobalExit
+        {
+            get
+            {
+                    if(cont == 0)
+                    {
+                        cont++;
+                        return _force;
+                    }   
+
+                    return !_force;
+            }
+            set
+            {
+                ForceGlobalExit = value;
+            }
+        }
 
         bool _force { get; set; }
 

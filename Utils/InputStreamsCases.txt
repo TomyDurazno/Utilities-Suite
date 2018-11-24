@@ -55,3 +55,9 @@ call inside "seq date 0 1 > hour > dump | range 0 10 > sumf > dump"
 EXPLODE ONES:
 
 - pipe guid > dump
+
+Wish Functional (?): 
+
+pipe getUser > groupBy x => x.Id 
+
+pipe getUser > map x => new { x.Id , x.Name }

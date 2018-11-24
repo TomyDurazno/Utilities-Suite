@@ -44,23 +44,12 @@ namespace Utility.Core.Runners
         {
             var startPipe = Pipe.Commandables.First();
 
-            if (startPipe.StartsWithVarName)
-            {
-                var reference = GetAllocated(startPipe.VarName);
+            var reference = GetAllocated(startPipe.VarName);
 
-                if (reference != null)
-                {
-                    await InternalRun(reference);
-                }
-                else
-                {
-                    await InternalRun();
-                }
-            }
+            if (startPipe.StartsWithVarName && reference != null)
+               await InternalRun(reference);
             else
-            {
                 await InternalRun();
-            }
         }
 
         #endregion

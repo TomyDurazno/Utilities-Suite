@@ -109,5 +109,16 @@ Hay que generar una forma de ejecutar los métodos de los Invocables obviando lo
 
 10/28/2018 - Added documentation for most of the classes
 
+11/24/2018 -
+
+ROADMAP:
+
+	- Allow input/output streams of generic type
+	- Place logging places before and after invocable call 
+	- Fix the while loop in the REPL
+	- Dinamically Load Assemblies (so that yo can load Invocables at runtime)
+
+	- Possible 'Azure Functions-esque' implementation?
+
 
 

@@ -9,24 +9,29 @@ namespace ConsoleTest
     {
         public static async Task Main(string[] args)
         {
-            await new InvokerService("Main", new StreamProvider(Reader, Writer), false, PostRun).Run();
+            Console.SetWindowSize(100, 10);
+            var provider = new IOProvider();
+            await new InvokerService("Main", new StreamProvider(provider.Reader, provider.Writer), false, provider.PostRun).Run();
         }
 
-        public static string Reader()
-        {
-            return Console.ReadLine();
-        }
+        public class IOProvider
+        {        
+            public string Reader()
+            {
+                return Console.ReadLine();
+            }
 
-        static string Writer(string input)
-        {
-            Console.WriteLine();
-            Console.WriteLine(input);
-            return string.Empty;
-        }
+            public string Writer(string input)
+            {
+                Console.WriteLine();
+                Console.WriteLine(input);
+                return string.Empty;
+            }
 
-        static void PostRun(string s)
-        {
-            Console.WriteLine(s);
+            public void PostRun(string s)
+            {
+                Console.WriteLine(s);
+            }
         }
     }
 }
